@@ -1,3 +1,4 @@
+<!-- pages/index.vue -->
 <template>
   <div class="bg-white">
     <!-- Hero Section -->
@@ -7,6 +8,9 @@
     
     <!-- About Section -->
     <HomeAbout />
+    
+    <!-- Departments Section -->
+    <HomeDepartments />
     
   </div>
 </template>
@@ -19,4 +23,10 @@ useHead({
     { name: 'description', content: 'آکادمی راما - مسیری هموار برای رسیدن به اهداف شما' }
   ]
 })
+
+// Optional: Handle department selection from child component
+const handleDepartmentSelected = (department: any) => {
+  console.log('Selected department on homepage:', department)
+  // You can handle this event as needed
+}
 </script>
