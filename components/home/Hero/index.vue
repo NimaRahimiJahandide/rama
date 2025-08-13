@@ -104,7 +104,7 @@
       </section>
 
       <!-- slider -->
-      <div class="relative w-full max-w-md mx-auto">
+      <div class="relative w-full  mx-auto">
         <!-- Slider Container -->
         <div class="relative rounded-2xl p-6">
           <!-- Slide Content -->
@@ -154,6 +154,8 @@
 </template>
 
 <script setup lang="ts">
+import { useHeroContent } from '~/composables/home/useHeroContent'
+
 const { heroContent } = useHeroContent()
 // Add this script section to your Hero component
 const currentSlide = ref(0)
