@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'iran-yekan';
+    src: url('../fonts/IRANYekanXFaNum-Regular.ttf');
+}
+
+@theme{
+    --font-IranYekan: 'iran-yekan';
+    --color-orange: #FF6B24 ;
+}
+
+@layer base {
+  body {
+    font-family: 'iran-yekan';
+    direction: rtl;
+    color: #1E2329;
+  }
+}
+
+@layer components {
+   .nav-link {
+    @apply text-gray-700 hover:text-orange transition-colors duration-200 font-medium;
+  }
+  
+  .social-icon {
+    @apply w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200;
+  }
+}
