@@ -9,6 +9,10 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
+  build: {
+    transpile: ['swiper']
+  },
+
   app: {
     head: {
       title: "راما",

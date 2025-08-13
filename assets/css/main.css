@@ -8,6 +8,7 @@
 @theme{
     --font-IranYekan: 'iran-yekan';
     --color-orange: #FF6B24 ;
+    --color-surmeh: #001595;
 }
 
 @layer base {
