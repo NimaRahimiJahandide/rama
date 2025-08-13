@@ -5,21 +5,23 @@
     <div class="px-4 sm:px-6 lg:px-8">
       <HomeHero />
     </div>
-    
+
     <!-- About Section -->
     <HomeAbout />
-    
+
     <!-- Departments Section -->
     <HomeDepartments />
-    
+
     <!-- Courses Slider Section -->
     <HomeCoursesSlider />
 
     <!-- banner -->
-     <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-[120px]">
-       <img src="/images/banner-home.webp" alt="banner-home">
-     </section>
-    
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-[120px]">
+      <img src="/images/banner-home.webp" alt="banner-home">
+    </section>
+
+    <!-- Testimonials -->
+    <HomeTestimonials  />
   </div>
 </template>
 
