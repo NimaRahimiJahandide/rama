@@ -1,14 +1,43 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'iran-yekan';
-    src: url('../fonts/IRANYekanXFaNum-Regular.ttf');
+  font-family: 'iran-yekan';
+  src: url('../fonts/IRANYekanXFaNum-Regular.ttf');
 }
 
-@theme{
-    --font-IranYekan: 'iran-yekan';
-    --color-orange: #FF6B24 ;
-    --color-surmeh: #001595;
+@theme {
+  --font-IranYekan: 'iran-yekan';
+  --color-orange: #FF6B24;
+  --color-surmeh: #001595;
+  --color-light-orange: #FDF2E9;
+  --color-medical-blue: #1E40AF;
+
+  /* keyframes */
+  @keyframes scroll-rtl {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* animations */
+  --animate-scroll-rtl: scroll-rtl 30s linear infinite;
+  --animate-fade-in: fade-in 0.5s ease-out;
 }
 
 @layer base {
@@ -20,10 +49,10 @@
 }
 
 @layer components {
-   .nav-link {
+  .nav-link {
     @apply text-gray-700 hover:text-orange transition-colors duration-200 font-medium;
   }
-  
+
   .social-icon {
     @apply w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200;
   }

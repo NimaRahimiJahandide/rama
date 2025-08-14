@@ -19,15 +19,17 @@
     <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-[120px]">
       <img src="/images/banner-home.webp" alt="banner-home">
     </section>
-    
+
     <!-- Testimonials -->
     <HomeTestimonials class="lg:block hidden" />
-    
+
     <!-- News and Articles Section -->
     <HomeNews />
 
     <!-- FAQ Section -->
     <HomeFaq />
+
+    <HomeScrollingText @item-clicked="handleScrollingTextInteraction" />
   </div>
 </template>
 
@@ -62,5 +64,10 @@ const handleNewsInteraction = (data: any) => {
 const handleFaqInteraction = (data: any) => {
   console.log('FAQ interaction:', data)
   // Handle FAQ item toggles, etc.
+}
+
+const handleScrollingTextInteraction = (data: any) => {
+  console.log('Scrolling text interaction:', data)
+  // Handle any custom interactions if needed
 }
 </script>
