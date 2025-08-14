@@ -1,9 +1,11 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-white">
     <Navbar />
     <main>
       <slot />
     </main>
+    <!-- Footer -->
+    <Footer />
   </div>
 </template>
 
