@@ -12,6 +12,8 @@
   --color-light-orange: #FDF2E9;
   --color-medical-blue: #1E40AF;
 
+  --shadow-custom-blue: 0px 4px 17px 0px #0D647F78;
+
   /* keyframes */
   @keyframes scroll-rtl {
     0% {
