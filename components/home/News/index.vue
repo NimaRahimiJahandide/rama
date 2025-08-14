@@ -1,5 +1,5 @@
 <template>
-  <section class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <section class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
     <!-- Section Header -->
     <div class="flex items-center justify-between mb-8 lg:mb-12">
       <!-- Title with Icon -->

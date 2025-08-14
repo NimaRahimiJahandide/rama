@@ -15,17 +15,19 @@
     <!-- Courses Slider Section -->
     <HomeCoursesSlider />
 
-    
     <!-- Banner -->
     <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-[120px]">
       <img src="/images/banner-home.webp" alt="banner-home">
     </section>
     
     <!-- Testimonials -->
-    <HomeTestimonials />
+    <HomeTestimonials class="lg:block hidden" />
     
     <!-- News and Articles Section -->
     <HomeNews />
+
+    <!-- FAQ Section -->
+    <HomeFaq />
   </div>
 </template>
 
@@ -54,5 +56,11 @@ const handleCourseInteraction = (data: any) => {
 const handleNewsInteraction = (data: any) => {
   console.log('News interaction:', data)
   // Handle news clicks, favorites, etc.
+}
+
+// Optional: Handle FAQ interactions
+const handleFaqInteraction = (data: any) => {
+  console.log('FAQ interaction:', data)
+  // Handle FAQ item toggles, etc.
 }
 </script>

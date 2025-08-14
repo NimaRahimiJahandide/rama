@@ -1,5 +1,5 @@
 <template>
-  <section class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <section class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
     <!-- Section Title -->
     <div class="text-center flex items-center justify-center mb-8 lg:mb-12">
       <h2 class="text-[36px] lg:text-4xl font-bold leading-[58px] px-5 border-x-4 rounded-[4px] border-orange">
