@@ -37,7 +37,6 @@ export const SCROLLING_CONFIG = {
   itemSpacing: 'gap-8', // Spacing between items
   containerHeight: 'h-16', // Container height
   textSize: 'text-base lg:text-lg',
-  backgroundColor: '#FDF2E9', // Light orange background like in image
   textColor: 'text-gray-700',
   pauseOnHover: true
 }

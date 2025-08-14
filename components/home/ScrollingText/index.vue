@@ -1,6 +1,7 @@
 <template>
   <section v-if="scrollingContent.isVisible" class="relative max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto overflow-hidden py-4"
     :style="{ backgroundColor: scrollingContent.config.backgroundColor }">
+    <h2 class="text-[36px] font-bold leading-[58px] flex justify-center items-center pb-10">لینک های کاربردی</h2>
     <!-- Scrolling Container -->
     <div class="flex items-center whitespace-nowrap" :class="[
       scrollingContent.config.containerHeight,
