@@ -22,32 +22,16 @@
       </NuxtLink>
     </div>
 
-    <!-- Articles Container -->
-    <div class="relative">
-      <!-- Desktop and Mobile: Horizontal Scroll -->
-      <div 
-        ref="articlesContainerRef"
-        class="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
-      >
-        <HomeNewsCard
-          v-for="article in displayedArticles"
-          :key="article.id"
-          :article="article"
-          @click="handleArticleClick"
-          @favorite-toggle="handleFavoriteToggle"
-        />
-      </div>
-      
-      <!-- Fade overlays for scroll indication -->
-      <div 
-        v-if="showScrollIndicators"
-        class="absolute left-0 top-0 bottom-4 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none"
-      ></div>
-      <div 
-        v-if="showScrollIndicators"
-        class="absolute right-0 top-0 bottom-4 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none"
-      ></div>
-      
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <HomeNewsCard
+        v-for="article in displayedArticles"
+        :key="article.id"
+        :article="article"
+        variant="grid"
+        @click="handleArticleClick"
+        @favorite-toggle="handleFavoriteToggle"
+      />
     </div>
   </section>
 </template>
@@ -57,110 +41,10 @@ import { useNewsContent } from '~/composables/home/useNewsContent'
 
 const { newsContent, getFeaturedArticles, toggleArticleFavorite } = useNewsContent()
 
-// Refs
-const articlesContainerRef = ref<HTMLElement | null>(null)
-
-// State
-const scrollPosition = ref(0)
-const containerWidth = ref(0)
-const scrollWidth = ref(0)
-
 // Computed
 const displayedArticles = computed(() => {
-  return getFeaturedArticles(8) // Show 8 articles in the slider
+  return getFeaturedArticles(6) // Show 6 articles in grid (2 rows × 3 cols on desktop)
 })
-
-const showScrollIndicators = computed(() => {
-  return scrollWidth.value > containerWidth.value
-})
-
-const showScrollButtons = computed(() => {
-  return showScrollIndicators.value && process.client
-})
-
-const isAtStart = computed(() => {
-  return scrollPosition.value <= 10
-})
-
-const isAtEnd = computed(() => {
-  return scrollPosition.value >= (scrollWidth.value - containerWidth.value - 10)
-})
-
-// Touch handling for mobile swipe
-let touchStartX = 0
-let touchStartY = 0
-
-const handleTouchStart = (e: TouchEvent) => {
-  touchStartX = e.touches[0].clientX
-  touchStartY = e.touches[0].clientY
-}
-
-const handleTouchMove = (e: TouchEvent) => {
-  if (!touchStartX || !touchStartY) return
-
-  const touchEndX = e.touches[0].clientX
-  const touchEndY = e.touches[0].clientY
-  
-  const deltaX = touchStartX - touchEndX
-  const deltaY = touchStartY - touchEndY
-  
-  // Only handle horizontal swipes (ignore vertical scrolling)
-  if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    e.preventDefault()
-    
-    const target = e.currentTarget as HTMLElement
-    if (target) {
-      target.scrollLeft += deltaX * 0.8
-      updateScrollPosition()
-    }
-  }
-}
-
-const handleTouchEnd = () => {
-  touchStartX = 0
-  touchStartY = 0
-}
-
-// Mouse wheel handling for horizontal scroll
-const handleWheel = (e: WheelEvent) => {
-  // Only handle horizontal scrolling when shift is pressed or when it's a horizontal wheel
-  if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-    e.preventDefault()
-    
-    const target = e.currentTarget as HTMLElement
-    if (target) {
-      const scrollAmount = e.deltaY || e.deltaX
-      target.scrollLeft += scrollAmount
-      updateScrollPosition()
-    }
-  }
-}
-
-// Scroll navigation
-const scrollLeft = () => {
-  if (articlesContainerRef.value) {
-    const scrollAmount = 300 // Adjust as needed
-    articlesContainerRef.value.scrollLeft -= scrollAmount
-    updateScrollPosition()
-  }
-}
-
-const scrollRight = () => {
-  if (articlesContainerRef.value) {
-    const scrollAmount = 300 // Adjust as needed
-    articlesContainerRef.value.scrollLeft += scrollAmount
-    updateScrollPosition()
-  }
-}
-
-// Update scroll position and dimensions
-const updateScrollPosition = () => {
-  if (articlesContainerRef.value) {
-    scrollPosition.value = articlesContainerRef.value.scrollLeft
-    containerWidth.value = articlesContainerRef.value.clientWidth
-    scrollWidth.value = articlesContainerRef.value.scrollWidth
-  }
-}
 
 // Event handlers
 const handleArticleClick = (article: any) => {
@@ -171,60 +55,4 @@ const handleArticleClick = (article: any) => {
 const handleFavoriteToggle = (article: any) => {
   toggleArticleFavorite(article.id)
 }
-
-// Lifecycle
-onMounted(() => {
-  updateScrollPosition()
-  
-  // Add scroll event listener
-  if (articlesContainerRef.value) {
-    articlesContainerRef.value.addEventListener('scroll', updateScrollPosition)
-  }
-  
-  // Add resize event listener
-  window.addEventListener('resize', updateScrollPosition)
-})
-
-onUnmounted(() => {
-  if (articlesContainerRef.value) {
-    articlesContainerRef.value.removeEventListener('scroll', updateScrollPosition)
-  }
-  window.removeEventListener('resize', updateScrollPosition)
-})
 </script>
-
-<style scoped>
-/* Hide scrollbar but keep functionality */
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari, Opera */
-}
-
-/* Smooth scrolling */
-.scroll-smooth {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar for the container (optional - remove .scrollbar-hide if you want visible scrollbar) */
-.scrollbar-custom::-webkit-scrollbar {
-  height: 4px;
-}
-
-.scrollbar-custom::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 2px;
-}
-
-.scrollbar-custom::-webkit-scrollbar-thumb {
-  background: #FF6B24;
-  border-radius: 2px;
-}
-
-.scrollbar-custom::-webkit-scrollbar-thumb:hover {
-  background: #e55a1f;
-}
-</style>

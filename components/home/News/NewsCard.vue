@@ -1,11 +1,11 @@
 <template>
   <div 
-    class="relative bg-white rounded-xl overflow-hidden shadow-sm group cursor-pointer transition-all duration-300"
+    class="relative bg-white h-[350px] rounded-xl overflow-hidden shadow-sm group cursor-pointer transition-all duration-300"
     :class="cardClasses"
     @click="handleCardClick"
   >
     <!-- Background Image -->
-    <div class="relative w-full h-48 overflow-hidden">
+    <div class="relative w-full h-full overflow-hidden">
       <img 
         :src="displayImage" 
         :alt="article.title"
@@ -58,7 +58,7 @@ import type { NewsArticle } from '~/constants/home/news'
 
 interface Props {
   article: NewsArticle
-  variant?: 'default' | 'compact' | 'featured'
+  variant?: 'default' | 'compact' | 'featured' | 'grid'
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -79,15 +79,17 @@ const displayImage = computed(() => {
 })
 
 const cardClasses = computed(() => {
-  const base = 'flex-shrink-0'
+  const base = 'hover:shadow-lg hover:-translate-y-1'
   
   switch (props.variant) {
     case 'compact':
-      return `${base} w-64 min-w-64`
+      return `${base} flex-shrink-0 w-64 min-w-64`
     case 'featured':
-      return `${base} w-80 min-w-80 ring-2 ring-orange/20`
+      return `${base} flex-shrink-0 w-80 min-w-80 ring-2 ring-orange/20`
+    case 'grid':
+      return `${base} w-full` // Full width for grid layout
     default:
-      return `${base} w-72 min-w-72`
+      return `${base} flex-shrink-0 w-72 min-w-72`
   }
 })
 
@@ -128,7 +130,6 @@ const handleImageError = () => {
   background: #FF6B24;
   border-radius: 2px;
 }
-
 
 /* Focus styles for accessibility */
 button:focus {
